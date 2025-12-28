@@ -23,6 +23,8 @@ class CachedImage extends StatelessWidget {
       height: imageHeight ?? screenSize.width * 0.3,
       imageUrl: imageUrl,
       fit: boxFit ?? BoxFit.cover,
+      errorWidget: (context, url, error) =>
+          const Icon(Icons.error, color: Colors.red),
     );
   }
 }

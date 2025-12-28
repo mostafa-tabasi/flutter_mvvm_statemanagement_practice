@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_statemanagement_practice/constants/constants.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/cached_image.dart';
+import 'package:flutter_mvvm_statemanagement_practice/widgets/movie.dart';
 
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
@@ -21,10 +22,8 @@ class MoviesScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: 10,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CachedImage(imageUrl: AppConstants.defaultImageUrl),
-        ),
+        itemBuilder: (context, index) =>
+            Padding(padding: const EdgeInsets.all(8.0), child: Movie()),
       ),
     );
   }
