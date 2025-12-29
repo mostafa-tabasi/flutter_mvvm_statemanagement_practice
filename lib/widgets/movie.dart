@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/cached_image.dart';
+import 'package:flutter_mvvm_statemanagement_practice/widgets/favorite_button.dart';
 
 import '../constants/constants.dart';
 
@@ -68,7 +69,7 @@ class Movie extends StatelessWidget {
                               style: TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
-                            // TODO: Add the favorite button
+                            FavoriteButton()
                           ],
                         ),
                       ],
