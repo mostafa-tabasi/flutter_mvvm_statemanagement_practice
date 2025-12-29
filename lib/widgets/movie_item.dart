@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/cached_image.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/favorite_button.dart';
+import 'package:flutter_mvvm_statemanagement_practice/widgets/genres_chips.dart';
 
 import '../constants/constants.dart';
 
-class Movie extends StatelessWidget {
-  const Movie({super.key});
+class MovieItem extends StatelessWidget {
+  const MovieItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class Movie extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(width: 10),
-                        // TODO: add genres widget
+                        GenresChips(),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,7 +70,7 @@ class Movie extends StatelessWidget {
                               style: TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
-                            FavoriteButton()
+                            FavoriteButton(),
                           ],
                         ),
                       ],
