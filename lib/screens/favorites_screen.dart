@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/movie_item.dart';
 
-class MoviesScreen extends StatelessWidget {
-  const MoviesScreen({super.key});
+class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Popular Movies"),
+        title: Text("Favorite Movies"),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.favorite),
+            icon: const Icon(Icons.delete),
             color: Colors.red,
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.dark_mode)),
         ],
       ),
       body: ListView.builder(
