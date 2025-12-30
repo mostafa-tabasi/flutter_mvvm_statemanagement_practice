@@ -18,4 +18,21 @@ class NavigationService {
       MaterialPageRoute(builder: (context) => widget),
     );
   }
+
+  Future<void> showDialog(BuildContext? context, Widget widget) async {
+    await showAdaptiveDialog(
+      barrierDismissible: true,
+      context: context ?? navigatorKey.currentContext!,
+      builder: (context) => widget,
+    );
+  }
+
+  void showSnackbar(String message) {
+    final context = navigatorKey.currentContext!;
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    SnackBar snackBar = SnackBar(
+      content: Text(message, style: TextStyle(color: Colors.white)),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 }
