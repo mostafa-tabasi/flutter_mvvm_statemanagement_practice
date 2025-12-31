@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_statemanagement_practice/models/genre.dart';
+import 'package:flutter_mvvm_statemanagement_practice/repositories/movies_repository.dart';
 import 'package:flutter_mvvm_statemanagement_practice/screens/favorites_screen.dart';
-import 'package:flutter_mvvm_statemanagement_practice/services/api_services.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/movie_item.dart';
@@ -28,7 +28,7 @@ class MoviesScreen extends StatelessWidget {
             onPressed: () async {
               // final List<Movie> movies = await getIt<ApiServices>()
               // .fetchMovies();
-              final List<Genre> genres = await getIt<ApiServices>()
+              final List<Genre> genres = await getIt<MoviesRepository>()
                   .fetchGenres();
               log("$genres");
             },
