@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_statemanagement_practice/screens/favorites_screen.dart';
+import 'package:flutter_mvvm_statemanagement_practice/services/api_services.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/movie_item.dart';
@@ -20,7 +21,12 @@ class MoviesScreen extends StatelessWidget {
             icon: const Icon(Icons.favorite),
             color: Colors.red,
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.dark_mode)),
+          IconButton(
+            onPressed: () {
+              getIt<ApiServices>().fetchMovies();
+            },
+            icon: const Icon(Icons.dark_mode),
+          ),
         ],
       ),
       body: ListView.builder(
