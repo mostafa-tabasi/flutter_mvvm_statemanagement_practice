@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:nativewrappers/_internal/vm/lib/developer.dart';
+import 'dart:developer';
 
 import 'package:flutter_mvvm_statemanagement_practice/constants/api_constants.dart';
 import 'package:http/http.dart' as http;
