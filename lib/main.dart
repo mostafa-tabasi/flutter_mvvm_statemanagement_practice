@@ -6,7 +6,7 @@ import 'package:flutter_mvvm_statemanagement_practice/screens/movies_screen.dart
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
 
-void main() async {
+void main() {
   setupNavigator();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
