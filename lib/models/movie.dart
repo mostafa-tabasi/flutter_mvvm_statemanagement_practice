@@ -1,4 +1,4 @@
-class MovieModel {
+class Movie {
   bool adult;
   String backdropPath;
   List<int> genreIds;
@@ -14,7 +14,7 @@ class MovieModel {
   double voteAverage;
   int voteCount;
 
-  MovieModel({
+  Movie({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -31,8 +31,8 @@ class MovieModel {
     required this.voteCount,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) {
-    return MovieModel(
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    return Movie(
       adult: json['adult'],
       backdropPath: json['backdrop_path'],
       genreIds: json['genre_ids'].cast<int>(),
@@ -67,5 +67,10 @@ class MovieModel {
     data['vote_average'] = voteAverage;
     data['vote_count'] = voteCount;
     return data;
+  }
+
+  @override
+  String toString() {
+    return "Movie(adult: $adult, backdropPath: $backdropPath, genreIds: $genreIds, id: $id, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, posterPath: $posterPath, releaseDate: $releaseDate, title: $title, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)";
   }
 }
