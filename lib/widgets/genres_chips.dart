@@ -3,13 +3,16 @@ import 'package:flutter_mvvm_statemanagement_practice/models/genre.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/genre_utils.dart';
 
 class GenresChips extends StatelessWidget {
-  const GenresChips({super.key, required this.genresIds});
+  const GenresChips({super.key /*required this.genresIds*/});
 
-  final List<int> genresIds;
+  // final List<int> genresIds;
 
   @override
   Widget build(BuildContext context) {
-    final List<Genre> genresNames = GenreUtils.movieGenresNames(genresIds);
+    final List<Genre> genresNames = GenreUtils.movieGenresNames(
+      /*genresIds*/
+      [],
+    );
 
     return Wrap(
       children: List.generate(genresNames.length, (index) {

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm_statemanagement_practice/constants/api_constants.dart';
-import 'package:flutter_mvvm_statemanagement_practice/models/movie.dart';
-import 'package:flutter_mvvm_statemanagement_practice/screens/details_screen.dart';
-import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
-import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
+import 'package:flutter_mvvm_statemanagement_practice/constants/constants.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/cached_image.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/favorite_button.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/genres_chips.dart';
 
-class MovieItem extends StatelessWidget {
-  const MovieItem({super.key, required this.movie});
+import '../screens/details_screen.dart';
+import '../services/navigation_service.dart';
+import '../utils/init_getit.dart';
 
-  final Movie movie;
+class MovieItem extends StatelessWidget {
+  const MovieItem({super.key /* required this.movie*/});
+
+  // final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,9 @@ class MovieItem extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(12.0),
           onTap: () {
-            getIt<NavigationService>().navigate(DetailsScreen(movie: movie));
+            getIt<NavigationService>().navigate(
+              DetailsScreen(/*movie: movie*/),
+            );
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -32,14 +34,12 @@ class MovieItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Hero(
-                    tag: movie.id,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12.0),
-                      child: CachedImage(
-                        imageUrl:
-                            "${ApiConstants.imagesBaseUrl}${movie.backdropPath}",
-                      ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: CachedImage(
+                      imageUrl:
+                          // "${ApiConstants.imagesBaseUrl}${movie.backdropPath}",
+                          AppConstants.defaultImageUrl,
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -48,7 +48,8 @@ class MovieItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          movie.title,
+                          // movie.title,
+                          "movie.title",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -59,11 +60,12 @@ class MovieItem extends StatelessWidget {
                           children: [
                             Icon(Icons.star, color: Colors.amber, size: 20.0),
                             SizedBox(width: 5),
-                            Text("${movie.voteAverage.toStringAsFixed(1)}/10"),
+                            // Text("${movie.voteAverage.toStringAsFixed(1)}/10"),
+                            Text("8/10"),
                           ],
                         ),
                         const SizedBox(width: 10),
-                        GenresChips(genresIds: movie.genreIds),
+                        GenresChips(/*genresIds: movie.genreIds*/),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,11 +77,12 @@ class MovieItem extends StatelessWidget {
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              movie.releaseDate,
+                              // movie.releaseDate,
+                              "movie.releaseDate",
                               style: TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
-                            FavoriteButton(movie: movie),
+                            FavoriteButton(/*movie: movie*/),
                           ],
                         ),
                       ],

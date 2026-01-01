@@ -19,7 +19,8 @@ class FavoritesScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: 10,
-        itemBuilder: (context, index) => Text("Movie #${index + 1}"),
+        itemBuilder: (context, index) =>
+            const MovieItem() /*Text("Movie #${index + 1}")*/,
       ),
     );
   }
