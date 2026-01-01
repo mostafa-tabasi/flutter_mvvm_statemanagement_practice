@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mvvm_statemanagement_practice/constants/api_constants.dart';
+import 'package:flutter_mvvm_statemanagement_practice/models/movie.dart';
 import 'package:flutter_mvvm_statemanagement_practice/screens/details_screen.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
@@ -6,10 +8,10 @@ import 'package:flutter_mvvm_statemanagement_practice/widgets/cached_image.dart'
 import 'package:flutter_mvvm_statemanagement_practice/widgets/favorite_button.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/genres_chips.dart';
 
-import '../constants/constants.dart';
-
 class MovieItem extends StatelessWidget {
-  const MovieItem({super.key});
+  const MovieItem({super.key, required this.movie});
+
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class MovieItem extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(12.0),
           onTap: () {
-            getIt<NavigationService>().navigate(DetailsScreen());
+            getIt<NavigationService>().navigate(DetailsScreen(movie: movie));
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -32,8 +34,9 @@ class MovieItem extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
-                    child: const CachedImage(
-                      imageUrl: AppConstants.defaultImageUrl,
+                    child: CachedImage(
+                      imageUrl:
+                          "${ApiConstants.imagesBaseUrl}${movie.backdropPath}",
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -41,19 +44,19 @@ class MovieItem extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "Movie Title",
+                        Text(
+                          movie.title,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(width: 10),
-                        const Row(
+                        Row(
                           children: [
                             Icon(Icons.star, color: Colors.amber, size: 20.0),
                             SizedBox(width: 5),
-                            Text("8/10"),
+                            Text("${movie.voteAverage.toStringAsFixed(1)}/10"),
                           ],
                         ),
                         const SizedBox(width: 10),
@@ -68,8 +71,8 @@ class MovieItem extends StatelessWidget {
                               color: Theme.of(context).colorScheme.secondary,
                             ),
                             const SizedBox(width: 5),
-                            const Text(
-                              "Release Date",
+                            Text(
+                              movie.releaseDate,
                               style: TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),

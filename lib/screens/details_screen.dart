@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm_statemanagement_practice/constants/constants.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/cached_image.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/favorite_button.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/genres_chips.dart';
 
+import '../constants/api_constants.dart';
+import '../models/movie.dart';
+
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+  const DetailsScreen({super.key, required this.movie});
+
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,9 @@ class DetailsScreen extends StatelessWidget {
             SizedBox(
               height: size.height * 0.45,
               width: double.infinity,
-              child: CachedImage(imageUrl: AppConstants.defaultImageUrl),
+              child: CachedImage(
+                imageUrl: "${ApiConstants.imagesBaseUrl}${movie.backdropPath}",
+              ),
             ),
             SingleChildScrollView(
               child: Column(
@@ -37,7 +43,7 @@ class DetailsScreen extends StatelessWidget {
                               children: [
                                 SizedBox(height: 25),
                                 Text(
-                                  "Movie Title",
+                                  movie.title,
                                   maxLines: 2,
                                   style: TextStyle(
                                     fontSize: 28,
@@ -53,10 +59,12 @@ class DetailsScreen extends StatelessWidget {
                                       size: 20,
                                     ),
                                     SizedBox(width: 5),
-                                    Text("9/10"),
+                                    Text(
+                                      "${movie.voteAverage.toStringAsFixed(1)}/10",
+                                    ),
                                     Spacer(),
                                     Text(
-                                      "Release Date",
+                                      movie.releaseDate,
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ],
@@ -65,7 +73,7 @@ class DetailsScreen extends StatelessWidget {
                                 GenresChips(),
                                 SizedBox(height: 10),
                                 Text(
-                                  "overview " * 150,
+                                  movie.overview,
                                   style: TextStyle(fontSize: 18),
                                   textAlign: TextAlign.justify,
                                 ),

@@ -4,6 +4,7 @@ class ApiConstants {
   static String apiKey = dotenv.get('MOVIES_API_KEY');
   static String bearerToken = dotenv.get('MOVIES_API_TOKEN');
   static const String baseUrl = "https://api.themoviedb.org/3";
+  static const String imagesBaseUrl = "https://image.tmdb.org/t/p/w500/";
 
   static Map<String, String> get headers =>
       {

@@ -91,11 +91,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
         itemCount: _movies.length + (_isFetching ? 1 : 0),
         itemBuilder: (context, index) {
           if (index < _movies.length) {
-            return MovieItem();
+            return MovieItem(movie: _movies[index]);
           } else {
-            return Center(
-              child: const CircularProgressIndicator.adaptive(),
-            );
+            return Center(child: const CircularProgressIndicator.adaptive());
           }
         },
       ),
