@@ -95,7 +95,7 @@ class DetailsScreen extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: EdgeInsets.all(6),
-                            child: FavoriteButton(),
+                            child: FavoriteButton(movie: movie),
                           ),
                         ),
                       ),

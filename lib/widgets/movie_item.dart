@@ -79,7 +79,7 @@ class MovieItem extends StatelessWidget {
                               style: TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
-                            FavoriteButton(),
+                            FavoriteButton(movie: movie),
                           ],
                         ),
                       ],

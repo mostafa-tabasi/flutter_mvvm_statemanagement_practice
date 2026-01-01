@@ -10,7 +10,9 @@ class ApiServices {
     final url = Uri.parse(
       "${ApiConstants.baseUrl}/movie/popular?language=en-US&page=$page",
     );
-    final response = await http.get(url, headers: ApiConstants.headers);
+    final response = await http
+        .get(url, headers: ApiConstants.headers)
+        .timeout(Duration(seconds: 20));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return List.from(
@@ -25,7 +27,9 @@ class ApiServices {
     final url = Uri.parse(
       "${ApiConstants.baseUrl}/genre/movie/list?language=en-US",
     );
-    final response = await http.get(url, headers: ApiConstants.headers);
+    final response = await http
+        .get(url, headers: ApiConstants.headers)
+        .timeout(Duration(seconds: 20));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return List.from(
