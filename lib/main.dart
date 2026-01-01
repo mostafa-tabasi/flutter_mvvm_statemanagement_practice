@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mvvm_statemanagement_practice/constants/theme.dart';
-import 'package:flutter_mvvm_statemanagement_practice/screens/movies_screen.dart';
+import 'package:flutter_mvvm_statemanagement_practice/screens/splash_screen.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Movies App',
       theme: AppThemeData.lightTheme,
-      home: const MoviesScreen(),
+      home: const SplashScreen(),
     );
   }
 }

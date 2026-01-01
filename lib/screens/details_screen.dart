@@ -74,7 +74,7 @@ class DetailsScreen extends StatelessWidget {
                                   ],
                                 ),
                                 SizedBox(height: 10),
-                                GenresChips(),
+                                GenresChips(genresIds: movie.genreIds),
                                 SizedBox(height: 10),
                                 Text(
                                   movie.overview,

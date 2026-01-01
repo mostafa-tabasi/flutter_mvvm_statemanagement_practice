@@ -9,10 +9,12 @@ class MoviesRepository {
   MoviesRepository(this.apiServices);
 
   Future<List<Movie>> fetchMovies({int page = 1}) async {
-    return apiServices.fetchMovies(page: page);
+    return await apiServices.fetchMovies(page: page);
   }
 
+  List<Genre> cachedGenres = [];
+
   Future<List<Genre>> fetchGenres() async {
-    return apiServices.fetchGenres();
+    return cachedGenres = await apiServices.fetchGenres();
   }
 }
