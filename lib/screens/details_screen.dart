@@ -21,8 +21,12 @@ class DetailsScreen extends StatelessWidget {
             SizedBox(
               height: size.height * 0.45,
               width: double.infinity,
-              child: CachedImage(
-                imageUrl: "${ApiConstants.imagesBaseUrl}${movie.backdropPath}",
+              child: Hero(
+                tag: movie.id,
+                child: CachedImage(
+                  imageUrl:
+                      "${ApiConstants.imagesBaseUrl}${movie.backdropPath}",
+                ),
               ),
             ),
             SingleChildScrollView(

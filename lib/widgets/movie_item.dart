@@ -32,11 +32,14 @@ class MovieItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12.0),
-                    child: CachedImage(
-                      imageUrl:
-                          "${ApiConstants.imagesBaseUrl}${movie.backdropPath}",
+                  Hero(
+                    tag: movie.id,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12.0),
+                      child: CachedImage(
+                        imageUrl:
+                            "${ApiConstants.imagesBaseUrl}${movie.backdropPath}",
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10),
