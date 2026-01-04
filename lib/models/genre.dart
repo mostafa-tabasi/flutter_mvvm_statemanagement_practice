@@ -1,8 +1,13 @@
-class Genre {
-  int id;
-  String name;
+import 'package:equatable/equatable.dart';
 
-  Genre({required this.id, required this.name});
+class Genre extends Equatable {
+  final int id;
+  final String name;
+
+  const Genre({required this.id, required this.name});
+
+  @override
+  List<Object> get props => [id, name];
 
   factory Genre.fromJson(Map<String, dynamic> json) {
     return Genre(id: json['id'], name: json['name']);
