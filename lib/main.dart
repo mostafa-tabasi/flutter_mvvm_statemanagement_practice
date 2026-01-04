@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mvvm_statemanagement_practice/constants/theme.dart';
 import 'package:flutter_mvvm_statemanagement_practice/screens/movies_screen.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
+import 'package:flutter_mvvm_statemanagement_practice/viewmodels/theme/theme_bloc.dart';
 
 void main() {
   setupNavigator();
@@ -23,12 +25,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: getIt<NavigationService>().navigatorKey,
-      debugShowCheckedModeBanner: false,
-      title: 'Movies App',
-      theme: AppThemeData.lightTheme,
-      home: /*const SplashScreen()*/ MoviesScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => ThemeBloc()..add(LoadThemeEvent())),
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            navigatorKey: getIt<NavigationService>().navigatorKey,
+            debugShowCheckedModeBanner: false,
+            title: 'Movies App',
+            theme: state is LightTheme
+                ? AppThemeData.lightTheme
+                : AppThemeData.darkTheme,
+            home: /*const SplashScreen()*/ MoviesScreen(),
+          );
+        },
+      ),
     );
   }
 }

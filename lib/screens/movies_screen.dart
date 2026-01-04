@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mvvm_statemanagement_practice/screens/favorites_screen.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
+import 'package:flutter_mvvm_statemanagement_practice/viewmodels/theme/theme_bloc.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/movie_item.dart';
 
 class MoviesScreen extends StatelessWidget {
@@ -20,15 +22,17 @@ class MoviesScreen extends StatelessWidget {
             icon: const Icon(Icons.favorite),
             color: Colors.red,
           ),
-          IconButton(
-            onPressed: () async {
-              // final List<Movie> movies = await getIt<ApiServices>()
-              // .fetchMovies();
-              // final List<Genre> genres = await getIt<MoviesRepository>()
-              //     .fetchGenres();
-              // log("$genres");
+          BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () async {
+                  context.read<ThemeBloc>().add(ToggleThemeEvent());
+                },
+                icon: Icon(
+                  state is LightTheme ? Icons.dark_mode : Icons.light_mode,
+                ),
+              );
             },
-            icon: const Icon(Icons.dark_mode),
           ),
         ],
       ),
