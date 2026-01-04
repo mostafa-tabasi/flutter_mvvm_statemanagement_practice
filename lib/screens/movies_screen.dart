@@ -26,7 +26,7 @@ class MoviesScreen extends StatelessWidget {
             builder: (context, state) {
               return IconButton(
                 onPressed: () async {
-                  context.read<ThemeBloc>().add(ToggleThemeEvent());
+                  getIt<ThemeBloc>().add(ToggleThemeEvent());
                 },
                 icon: Icon(
                   state is LightTheme ? Icons.dark_mode : Icons.light_mode,
