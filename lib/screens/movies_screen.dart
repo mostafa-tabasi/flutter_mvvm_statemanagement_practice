@@ -6,6 +6,8 @@ import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
 import 'package:flutter_mvvm_statemanagement_practice/viewmodels/theme/theme_bloc.dart';
 import 'package:flutter_mvvm_statemanagement_practice/widgets/movie_item.dart';
 
+import '../viewmodels/movies/movies_bloc.dart';
+
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
 
@@ -36,17 +38,45 @@ class MoviesScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        // controller: _scrollController,
-        // itemCount: _movies.length + (_isFetching ? 1 : 0),
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          // if (index < _movies.length) {
-          return MovieItem();
-          // return MovieItem(movie: _movies[index]);
-          // } else {
-          //   return Center(child: const CircularProgressIndicator.adaptive());
-          // }
+      body: BlocBuilder<MoviesBloc, MoviesState>(
+        builder: (context, state) {
+          if (state is MoviesLoading) {
+            return const Center(child: CircularProgressIndicator.adaptive());
+          } else if (state is MoviesError) {
+            return Center(child: Text(state.message));
+          } else if (state is MoviesLoaded || state is MoviesLoadingMore) {
+            final movies = state is MoviesLoaded
+                ? state.movies
+                : (state as MoviesLoadingMore).movies;
+            final isLoadingMore = state is MoviesLoadingMore;
+            final itemCount = isLoadingMore ? movies.length + 1 : movies.length;
+
+            return NotificationListener<ScrollNotification>(
+              onNotification: (ScrollNotification scrollInfo) {
+                if (scrollInfo.metrics.pixels ==
+                        scrollInfo.metrics.maxScrollExtent &&
+                    !isLoadingMore) {
+                  getIt<MoviesBloc>().add(FetchMoreMovies());
+                  return true;
+                }
+                return false;
+              },
+              child: ListView.builder(
+                itemCount: itemCount,
+                itemBuilder: (context, index) {
+                  if (index >= movies.length && isLoadingMore) {
+                    return Center(
+                      child: const CircularProgressIndicator.adaptive(),
+                    );
+                  }
+
+                  return MovieItem();
+                },
+              ),
+            );
+          }
+
+          return const Center(child: Text("No data available"));
         },
       ),
     );

@@ -30,9 +30,7 @@ class NavigationService {
   void showSnackbar(String message) {
     final context = navigatorKey.currentContext!;
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    SnackBar snackBar = SnackBar(
-      content: Text(message, style: TextStyle(color: Colors.white)),
-    );
+    SnackBar snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
