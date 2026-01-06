@@ -1,6 +1,7 @@
 import 'package:flutter_mvvm_statemanagement_practice/repositories/movies_repository.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/api_services.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
+import 'package:flutter_mvvm_statemanagement_practice/viewmodels/movies/movies_bloc.dart';
 import 'package:flutter_mvvm_statemanagement_practice/viewmodels/theme/theme_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -13,4 +14,5 @@ void setupNavigator() {
     () => MoviesRepository(getIt<ApiServices>()),
   );
   getIt.registerLazySingleton<ThemeBloc>(() => ThemeBloc());
+  getIt.registerLazySingleton<MoviesBloc>(() => MoviesBloc());
 }

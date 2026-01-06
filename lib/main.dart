@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mvvm_statemanagement_practice/constants/theme.dart';
-import 'package:flutter_mvvm_statemanagement_practice/screens/movies_screen.dart';
+import 'package:flutter_mvvm_statemanagement_practice/screens/splash_screen.dart';
 import 'package:flutter_mvvm_statemanagement_practice/services/navigation_service.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
+import 'package:flutter_mvvm_statemanagement_practice/viewmodels/movies/movies_bloc.dart';
 import 'package:flutter_mvvm_statemanagement_practice/viewmodels/theme/theme_bloc.dart';
 
 void main() {
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt<ThemeBloc>()..add(LoadThemeEvent())),
+        BlocProvider(create: (_) => getIt<MoviesBloc>()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
             theme: state is LightTheme
                 ? AppThemeData.lightTheme
                 : AppThemeData.darkTheme,
-            home: /*const SplashScreen()*/ MoviesScreen(),
+            home: const SplashScreen(),
           );
         },
       ),
