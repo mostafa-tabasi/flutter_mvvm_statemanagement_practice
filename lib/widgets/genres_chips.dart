@@ -1,23 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mvvm_statemanagement_practice/models/genre.dart';
 import 'package:flutter_mvvm_statemanagement_practice/utils/genre_utils.dart';
 
-class GenresChips extends StatelessWidget {
-  const GenresChips({super.key /*required this.genresIds*/});
+import '../viewmodels/movies/movies_bloc.dart';
 
-  // final List<int> genresIds;
+class GenresChips extends StatelessWidget {
+  const GenresChips({super.key, required this.genresIds});
+
+  final List<int> genresIds;
 
   @override
   Widget build(BuildContext context) {
-    final List<Genre> genresNames = GenreUtils.movieGenresNames(
-      /*genresIds*/
-      [],
-    );
+    return BlocBuilder<MoviesBloc, MoviesState>(
+      builder: (context, state) {
+        if (state is MoviesLoaded || state is MoviesLoadingMore) {
+          final allGenres = state is MoviesLoaded
+              ? state.genres
+              : (state as MoviesLoadingMore).genres;
+          final List<Genre> genresNames = GenreUtils.movieGenresNames(
+            genresIds,
+            allGenres,
+          );
 
-    return Wrap(
-      children: List.generate(genresNames.length, (index) {
-        return chipWidget(genreName: genresNames[index].name, context: context);
-      }),
+          return Wrap(
+            children: List.generate(genresNames.length, (index) {
+              return chipWidget(
+                genreName: genresNames[index].name,
+                context: context,
+              );
+            }),
+          );
+        }
+
+        return Text("Loading genres...");
+      },
     );
   }
 

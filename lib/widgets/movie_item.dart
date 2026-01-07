@@ -61,7 +61,7 @@ class MovieItem extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(width: 10),
-                        GenresChips(/*genresIds: movie.genreIds*/),
+                        GenresChips(genresIds: movie.genreIds),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

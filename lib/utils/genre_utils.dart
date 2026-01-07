@@ -1,16 +1,14 @@
 import 'package:flutter_mvvm_statemanagement_practice/models/genre.dart';
-import 'package:flutter_mvvm_statemanagement_practice/repositories/movies_repository.dart';
-import 'package:flutter_mvvm_statemanagement_practice/utils/init_getit.dart';
 
 class GenreUtils {
-  static List<Genre> movieGenresNames(List<int> genresIds) {
-    final MoviesRepository moviesRepository = getIt<MoviesRepository>();
-    // final cachedGenres = moviesRepository.cachedGenres;
-    final cachedGenres = []; //TODO: we need to get the correct cachedGenres
+  static List<Genre> movieGenresNames(
+    List<int> genresIds,
+    List<Genre> genresList,
+  ) {
     final List<Genre> movieGenres = [];
 
     for (var id in genresIds) {
-      for (var genre in cachedGenres) {
+      for (var genre in genresList) {
         if (id == genre.id) {
           movieGenres.add(genre);
           continue;
