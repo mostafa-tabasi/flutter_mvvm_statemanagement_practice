@@ -70,7 +70,7 @@ class MoviesScreen extends StatelessWidget {
                     );
                   }
 
-                  return MovieItem();
+                  return MovieItem(movie: movies[index]);
                 },
               ),
             );
