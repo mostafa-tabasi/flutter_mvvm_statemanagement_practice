@@ -14,5 +14,3 @@ final class FavoritesLoaded extends FavoritesState {
 }
 
 final class FavoritesError extends FavoritesState {}
-
-final class FavoritesEmpty extends FavoritesState {}
